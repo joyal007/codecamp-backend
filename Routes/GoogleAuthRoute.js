@@ -11,7 +11,7 @@ module.exports = (app) => {
     { failureRedirect: '/login', failureMessage: true }), 
     (req, res) => 
     {
-        res.redirect('/')
+        res.redirect('http://localhost:3000/?userid='+req.user._id)
     })
 }
 

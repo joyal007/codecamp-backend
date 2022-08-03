@@ -8,7 +8,11 @@ const QuestionSchema = new Schema({
     difficulty:String,
     example:[],
     constraint:[],
-    testcase:{}
+    testcase:{
+        input:String,
+        outpur:String
+    },
+    code:String
 })
 
 mongoose.model('Question',QuestionSchema,'questionDetail')

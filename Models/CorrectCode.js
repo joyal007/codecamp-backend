@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const correctCodeSchema  = new Schema({
     id:String,
     submitCode:String,
-    testCaseCode:String
+    correctCode:String,
+    title:String,
 })
 
-mongoose.model('Code',correctCodeSchema,'CorrectCode')
+mongoose.model('Code',correctCodeSchema,'correctcode')
