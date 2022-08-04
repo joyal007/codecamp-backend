@@ -12,7 +12,8 @@ const QuestionSchema = new Schema({
         input:String,
         outpur:String
     },
-    code:String
+    code:String,
+    discussion:[]
 })
 
 mongoose.model('Question',QuestionSchema,'questionDetail')

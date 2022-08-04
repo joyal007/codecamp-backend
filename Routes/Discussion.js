@@ -1,33 +1,28 @@
-module.exports = (app)=>{
-    app.post('/disussion/:title',(req,res)=>{
-        const discussion=[
-            {
-                title:"Best Solution",
-                content:{
-                    msg:"Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0."
-                }
-            },
-            {
-                title:"Best Solution",
-                content:{
-                    msg:"This is the easiest code"
-                }
-            },
-            {
-                title:"Best Solution",
-                content:{
-                    msg:"This is the easiest code"
-                }
-            },
-            {
-                title:"Best Solution",
-                content:{
-                    msg:"This is the easiest code"
-                }
-            },
-        ]
-        
+const mongoose = require('mongoose')
+const Question = mongoose.model('Question')
+
+module.exports = (app) => {
+    app.post('/disussion/:title', async (req, res) => {
+        const data = await Question.findOne({ title: req.params.title }).select('discussion')
+
         console.log(req.params.title)
-        res.send(discussion)
+        console.log(data)
+        res.send(data)
+    })
+    app.get('/discussion/add/:title', async (req, res) => {
+        console.log(req.query)
+        const data = await Question.findOne({ title: req.params.title }).select('discussion')
+        const datasend = data.discussion
+        console.log(data)
+        
+            Question.findOneAndUpdate({ title: req.params.title }, { discussion: [...datasend, req.query] },null,(err,doc)=>{
+                
+            if (err){
+                console.log(err)
+            }
+            else{
+                console.log("Original Doc : ",doc);
+            }
+        })
     })
 }
